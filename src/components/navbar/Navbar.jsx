@@ -5,19 +5,26 @@ import { RxCross1 } from "react-icons/rx";
 import { BsCartCheckFill } from "react-icons/bs";
 import "./nav.css";
 import Navlink from "../navlink/Navlink";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Input from "../input/Input";
+import CartLink from "../cartlink/CartLink";
+import { setKeyword } from "../../features/services/productsSlice";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
   const handleMenu = () => {
     setMenu(!menu);
   };
 
+  useEffect(() => {
+    dispatch(setKeyword(search));
+  }, [search]);
   const { cartQuantity } = useSelector((state) => state.products);
-  // console.log(cartQuantity);
 
   return (
-    <section className="sticky top-0 bg-primary text-background overflow-hidden z-10 shadow-sm">
+    <section className="sticky top-0 bg-gray-100 text-background overflow-hidden z-10 shadow-md">
       <nav className="w-[90%] mx-auto h-20 flex items-center justify-between">
         <Link to={"/"} className="text-xl uppercase font-bold">
           E-commerce
@@ -29,28 +36,8 @@ const Navbar = () => {
           <Navlink path={"contact"} name={"Contact"} />
         </ul>
         <div className="hidden md:flex flex-row gap-3 items-center">
-          <div className=" border border-background h-9 rounded px-3">
-            <input
-              type="text"
-              className=" outline-none md:w-40 lg:w-full h-full  placeholder:text-gray-500 bg-transparent"
-              placeholder="Search Here . . . "
-            />
-          </div>
-          <Link
-            to={"cart"}
-            className=" bg-background text-primary h-9 w-24 rounded flex items-center justify-center gap-2 relative"
-          >
-            <BsCartCheckFill className="text-lg" />
-            Cart
-            {cartQuantity > 0 ? (
-              <span className=" absolute text-sm -top-2 -right-2 border border-background  bg-white w-5 h-5 rounded-full text-background flex items-center justify-center  ">
-                {" "}
-                {cartQuantity}{" "}
-              </span>
-            ) : (
-              ""
-            )}
-          </Link>
+          <Input search={search} setSearch={setSearch} />
+          <CartLink />
         </div>
 
         <button onClick={handleMenu} className="md:hidden text-3xl">
@@ -67,29 +54,8 @@ const Navbar = () => {
             <Navlink path={"contact"} name={"Contact"} toggle={handleMenu} />
           </ul>
           <div className={"md:hidden flex flex-row gap-5 items-center"}>
-            <div className=" border border-background h-9 rounded px-3 w-full">
-              <input
-                type="text"
-                className=" outline-none h-full  placeholder:text-gray-500 bg-transparent"
-                placeholder="Search Here . . . "
-              />
-            </div>
-            <Link
-              onClick={handleMenu}
-              to={"cart"}
-              className=" bg-background text-primary h-9 w-28 rounded flex items-center justify-center gap-2 relative "
-            >
-              <BsCartCheckFill className="text-lg" />
-              Cart
-              {cartQuantity > 0 ? (
-                <span className=" absolute text-sm -top-2 -right-2 border border-background  bg-white w-5 h-5 rounded-full text-background flex items-center justify-center  ">
-                  {" "}
-                  {cartQuantity}{" "}
-                </span>
-              ) : (
-                ""
-              )}
-            </Link>
+            <Input search={search} setSearch={setSearch} />
+            <CartLink toggle={handleMenu} />
           </div>
         </div>
       </nav>

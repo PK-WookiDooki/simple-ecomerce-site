@@ -1,14 +1,68 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { CItem } from "../../components";
+import { BsArrowLeft } from "react-icons/bs";
+import { clearCart } from "../../features/services/productsSlice";
 
 const Cart = () => {
-  const { cartItems } = useSelector((state) => state.products);
-  console.log(cartItems);
+  const { cartItems, cartQuantity, totalAmount } = useSelector(
+    (state) => state.products
+  );
 
+  const dispatch = useDispatch();
+
+  if (cartItems.length < 1) {
+    return (
+      <section className="my-5  bg-background text-primary p-5 rounded flex flex-col items-center gap-5">
+        <h2 className="text-2xl font-bold text-center">
+          Your Shopping Cart Empty Now!
+        </h2>
+        <Link
+          to={"/products"}
+          className=" px-5 py-2 rounded bg-primary text-background"
+        >
+          {" "}
+          Go Shopping{" "}
+        </Link>
+      </section>
+    );
+  }
   return (
-    <div>
-      <h1> Your Cart</h1>
-    </div>
+    <section className="mt-5 ">
+      <h1 className="text-center text-xl font-bold">
+        {" "}
+        Your Shopping Cart ({cartQuantity} Items)
+      </h1>
+      <div className=" flex flex-col gap-3 border-b py-3 ">
+        {cartItems?.map((item) => {
+          return <CItem key={item.id} item={item} />;
+        })}
+      </div>
+      <div className="mt-5 flex flex-col md:flex-row justify-between p-3 shadow border-t sticky bottom-0 z-10 backdrop-blur-lg gap-3">
+        <div className="">
+          <h2 className="text-lg font-bold text-center">
+            Total Amount : $ {totalAmount.toFixed(2)}
+          </h2>
+        </div>
+        <div className="flex flex-col gap-2">
+          <button
+            onClick={() => dispatch(clearCart())}
+            className="px-5 py-2 bg-red-500 hover:bg-red-600 rounded text-primary duration-200"
+          >
+            {" "}
+            Clear Cart{" "}
+          </button>
+          <Link
+            to={"/products"}
+            className=" flex items-center gap-2 px-5 py-2 justify-center w-full rounded bg-gray-700 hover:bg-gray-900 text-primary duration-150"
+          >
+            {" "}
+            <BsArrowLeft className="text-xl" /> Continue Shopping
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div className="bg-primary text-secondary min-h-screen">
+    <div className="bg-primary text-background min-h-screen">
       <NB />
       <main className="w-[90%] mx-auto">
         <Outlet />

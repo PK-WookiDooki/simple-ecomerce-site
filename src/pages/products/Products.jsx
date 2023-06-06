@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getData } from "../../features/apis/getData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../features/services/productsSlice";
 import { Card, Spinner } from "../../components";
 
@@ -11,7 +11,12 @@ const Products = () => {
     getProducts();
   }, []);
 
+  const { keyword } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+
+  const filteredProducts = products?.filter((item) =>
+    item.title.toLowerCase().includes(keyword.toLowerCase())
+  );
 
   const getProducts = async () => {
     try {
@@ -35,7 +40,7 @@ const Products = () => {
           Explore What You Want!
         </h1>
         <div className="flex flex-row flex-wrap items-stretch justify-center gap-5">
-          {products?.map((item) => {
+          {filteredProducts?.map((item) => {
             return <Card key={item.id} item={item} />;
           })}
         </div>
