@@ -34,7 +34,7 @@ const Products = () => {
   }
 
   return (
-    <section className="">
+    <section className=" w-[90%] mx-auto">
       <div className=" py-5">
         <h1 className="text-2xl text-background text-center mb-5">
           Explore What You Want!

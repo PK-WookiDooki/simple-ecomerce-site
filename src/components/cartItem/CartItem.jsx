@@ -8,6 +8,8 @@ import {
   increaseItem,
   removeFromCart,
 } from "../../features/services/productsSlice";
+import { showDeleteAlert } from "../../features/functions/alert";
+import Swal from "sweetalert2";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -23,7 +25,20 @@ const CartItem = ({ item }) => {
   };
 
   const removeItem = () => {
-    dispatch(removeFromCart(item));
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Removed!", "Item has been removed!.", "success");
+        dispatch(removeFromCart(item));
+      }
+    });
   };
 
   const itemPrice = (item.price * item.quantity).toFixed(2);
@@ -31,7 +46,7 @@ const CartItem = ({ item }) => {
   return (
     <div className="flex flex-col md:flex-row  items-stretch justify-between gap-5 rounded shadow w-full overflow-hidden p-3">
       <div className="flex items-center w-full gap-5 ">
-        <div className=" w-24 md:w-36 md:shadow md:p-2">
+        <div className=" w-24 md:w-36 md:p-2">
           <img src={item.image} alt="" className="w-full" />
         </div>
         <div className="flex flex-col gap-5 w-full ">
@@ -48,7 +63,7 @@ const CartItem = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-center border-t pt-3">
+      <div className="flex justify-between items-center border-t md:border-t-0 pt-3">
         <div className=" flex flex-row gap-3  md:flex-col  items-center justify-center">
           <button
             className="w-10 h-10  bg-background rounded-full text-primary flex items-center justify-center"

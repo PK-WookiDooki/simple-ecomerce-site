@@ -9,12 +9,11 @@ const CartLink = ({ toggle }) => {
     <Link
       onClick={toggle}
       to={"cart"}
-      className=" bg-background text-primary h-9 w-32 lg:w-24 rounded flex items-center justify-center gap-2 relative"
+      className=" bg-background hover:bg-green-900 duration-150 text-primary h-9 w-24 md:w-20 rounded-sm flex items-center justify-center gap-2 relative group"
     >
-      <BsCartCheckFill className="text-lg" />
-      Cart
+      <BsCartCheckFill className="text-2xl" />{" "}
       {cartQuantity > 0 ? (
-        <span className=" absolute text-sm -top-2 -right-2 border border-background  bg-white w-5 h-5 rounded-full text-background flex items-center justify-center  ">
+        <span className=" absolute text-sm -top-3 -right-1 border border-background  bg-white w-5 h-5 rounded-full text-background flex items-center justify-center ">
           {" "}
           {cartQuantity}{" "}
         </span>

@@ -1,8 +1,11 @@
 import React from "react";
 
-const Input = ({ search, setSearch }) => {
+const Input = ({ search, setSearch, handleSubmit }) => {
   return (
-    <div className=" border border-background h-9 w-full md:w-40 lg:w-56 rounded px-3">
+    <form
+      onSubmit={handleSubmit}
+      className=" border border-background h-9 w-full md:w-40 lg:w-56 rounded-sm px-3"
+    >
       <input
         type="text"
         value={search}
@@ -10,7 +13,7 @@ const Input = ({ search, setSearch }) => {
         className=" outline-none w-full h-full  placeholder:text-gray-500 bg-transparent"
         placeholder="Search Here . . . "
       />
-    </div>
+    </form>
   );
 };
 

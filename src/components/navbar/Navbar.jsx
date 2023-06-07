@@ -18,6 +18,11 @@ const Navbar = () => {
     setMenu(!menu);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMenu(!menu);
+  };
+
   useEffect(() => {
     dispatch(setKeyword(search));
   }, [search]);
@@ -31,12 +36,18 @@ const Navbar = () => {
         </Link>
 
         <ul className="hidden md:flex items-center justify-center gap-5 self-stretch ">
+          <Navlink path={"/"} name={"Home"} />
+
           <Navlink path={"products"} name={"Products"} />
           <Navlink path={"about"} name={"About"} />
           <Navlink path={"contact"} name={"Contact"} />
         </ul>
         <div className="hidden md:flex flex-row gap-3 items-center">
-          <Input search={search} setSearch={setSearch} />
+          <Input
+            handleSubmit={handleSubmit}
+            search={search}
+            setSearch={setSearch}
+          />
           <CartLink />
         </div>
 
@@ -45,16 +56,21 @@ const Navbar = () => {
         </button>
         <div
           className={`flex flex-col transform ${
-            menu ? " h-56 p-3 shadow border" : "h-0 "
-          } md:hidden fixed text-background bg-primary  top-24 rounded gap-4 w-[90%] duration-200 overflow-hidden z-10`}
+            menu ? " h-[276px] p-3 shadow border" : "h-0 "
+          } md:hidden fixed text-background bg-gray-100  top-24 rounded gap-4 w-[90%] duration-200 overflow-hidden z-10`}
         >
           <ul className="md:hidden flex flex-col items-center justify-center gap-3 w-full ">
+            <Navlink path={"/"} name={"Home"} toggle={handleMenu} />
             <Navlink path={"products"} name={"Products"} toggle={handleMenu} />
             <Navlink path={"about"} name={"About"} toggle={handleMenu} />
             <Navlink path={"contact"} name={"Contact"} toggle={handleMenu} />
           </ul>
           <div className={"md:hidden flex flex-row gap-5 items-center"}>
-            <Input search={search} setSearch={setSearch} />
+            <Input
+              handleSubmit={handleSubmit}
+              search={search}
+              setSearch={setSearch}
+            />
             <CartLink toggle={handleMenu} />
           </div>
         </div>

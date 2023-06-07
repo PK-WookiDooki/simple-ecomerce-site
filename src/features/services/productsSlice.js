@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { showAlert, successAlert } from "../functions/alert";
 
 const productsSlice = createSlice({
   name: "products",
@@ -23,11 +24,19 @@ const productsSlice = createSlice({
         (item) => item.id === Number(payload.id)
       );
       if (isExisted) {
-        return alert("Item already added!");
+        return showAlert(
+          "Oops!",
+          "This item is already added to cart!",
+          "error"
+        );
       }
       state.cartItems.push({ ...payload, quantity: 1 });
       state.cartQuantity += 1;
-      state.totalAmount = state.cartItems.reduce((pv, cv) => pv + cv.price, 0);
+      state.totalAmount = state.cartItems.reduce(
+        (pv, cv) => pv + cv.price * cv.quantity,
+        0
+      );
+      successAlert();
     },
 
     removeFromCart: (state, { payload }) => {
