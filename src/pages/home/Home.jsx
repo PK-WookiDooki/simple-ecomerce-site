@@ -1,6 +1,7 @@
 import React from "react";
 import shopping from "../../assets/images/online_shopping.png";
 import { Link } from "react-router-dom";
+import { PButton } from "../../components";
 
 const Home = () => {
   return (
@@ -16,14 +17,7 @@ const Home = () => {
           explore a vast array of products and services from the comfort of your
           own home. So, make your shopping online easy and freely.
         </p>
-
-        <Link
-          to={"products"}
-          className=" bg-background hover:bg-green-900 duration-150 px-6 py-2 rounded-sm w-fit text-primary"
-        >
-          {" "}
-          Shop Now{" "}
-        </Link>
+        <PButton path={"products"} title={"Shop Now"} />
       </div>
       <div className="w-full">
         <img src={shopping} alt="" className="" />

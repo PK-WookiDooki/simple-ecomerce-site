@@ -36,7 +36,7 @@ const Products = () => {
   return (
     <section className=" w-[90%] mx-auto">
       <div className=" py-5">
-        <h1 className="text-2xl text-background text-center mb-5">
+        <h1 className="text-2xl font-bold text-background text-center mb-5">
           Explore What You Want!
         </h1>
         <div className="flex flex-row flex-wrap items-stretch justify-center gap-5">

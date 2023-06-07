@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getData } from "../../features/apis/getData";
-import { RCard, Spinner } from "../../components";
+import { PButton, RCard, Spinner } from "../../components";
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/services/productsSlice";
@@ -40,6 +40,9 @@ const Detail = () => {
   );
 
   const dispatch = useDispatch();
+  const addItemToCart = () => {
+    dispatch(addToCart(currentProduct));
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -71,21 +74,16 @@ const Detail = () => {
           <div className=" flex items-center justify-between mt-auto">
             <Link
               to={`..`}
-              className="px-6 py-[5px] rounded-sm  bg-black text-primary hover:bg-gray-700 active:scale-95 duration-150"
+              className="px-6 py-2 rounded-sm  bg-black text-primary hover:bg-gray-800 active:scale-95 duration-150"
             >
               Back
             </Link>
-            <button
-              onClick={() => dispatch(addToCart(currentProduct))}
-              className="px-6 py-[5px] rounded-sm  bg-background text-primary hover:bg-green-800 active:scale-95 duration-150"
-            >
-              Add to Cart
-            </button>
+            <PButton title={"Add to Cart"} toggle={addItemToCart} />
           </div>
         </div>
       </div>
       <div className=" mt-5 bg-gray-200 rounded-sm py-3">
-        <h2 className=" capitalize text-lg font-medium text-center">
+        <h2 className=" capitalize text-lg font-semibold text-center">
           You may also like
         </h2>
         <div className=" flex flex-col md:flex-row flex-wrap gap-5 items-stretch justify-center mt-3 ">

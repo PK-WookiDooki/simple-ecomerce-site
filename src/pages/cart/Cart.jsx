@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { CItem } from "../../components";
+import { CItem, ECart, TRow } from "../../components";
 import { BsArrowLeft } from "react-icons/bs";
 import { clearCart } from "../../features/services/productsSlice";
 import Swal from "sweetalert2";
@@ -31,22 +31,7 @@ const Cart = () => {
   };
 
   if (cartItems.length < 1) {
-    return (
-      <section className=" flex items-center justify-center w-full">
-        <div className="my-5  bg-background text-primary p-5 py-10 rounded-sm flex flex-col items-center gap-5 justify-center">
-          <h2 className="text-2xl font-bold text-center">
-            Your Shopping Cart Empty Now!
-          </h2>
-          <Link
-            to={"/products"}
-            className=" px-5 py-2 rounded-sm bg-gray-100 hover:bg-primary text-background duration-150 ease-in"
-          >
-            {" "}
-            Go Shopping{" "}
-          </Link>
-        </div>
-      </section>
-    );
+    return <ECart />;
   }
   return (
     <section className="mt-5 w-[90%] flex flex-col pb-3">
@@ -54,7 +39,24 @@ const Cart = () => {
         {" "}
         Your Shopping Cart ({cartQuantity} Items)
       </h1>
-      <div className=" flex flex-col gap-3 border-b py-3 ">
+
+      <table className=" hidden md:table w-full mt-5 ">
+        <thead>
+          <tr className="text-left table-row ">
+            <th className="py-3"> Description </th>
+            <th className="py-3"> Quantity </th>
+            <th className="py-3"> Remove </th>
+            <th className="py-3"> Price </th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems?.map((item) => {
+            return <TRow item={item} />;
+          })}
+        </tbody>
+      </table>
+
+      <div className="md:hidden flex flex-col gap-3 border-t border-background border-opacity-70 py-3 mt-5 ">
         {cartItems?.map((item) => {
           return <CItem key={item.id} item={item} />;
         })}

@@ -9,7 +9,7 @@ const CartLink = ({ toggle }) => {
     <Link
       onClick={toggle}
       to={"cart"}
-      className=" bg-background hover:bg-green-900 duration-150 text-primary h-9 w-24 md:w-20 rounded-sm flex items-center justify-center gap-2 relative group"
+      className=" bg-background hover:bg-green-900 duration-150 text-primary h-10 w-24 md:w-20 rounded-sm flex items-center justify-center gap-2 relative group"
     >
       <BsCartCheckFill className="text-2xl" />{" "}
       {cartQuantity > 0 ? (

@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { ML } from "./layouts";
 import { Detail, Products, Cart, Home, PNF, About } from "./pages";
