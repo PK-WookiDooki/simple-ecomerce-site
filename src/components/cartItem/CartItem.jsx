@@ -3,6 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import { BsPlusLg } from "react-icons/bs";
 import { HiOutlineMinus } from "react-icons/hi";
 import { useDispatch } from "react-redux";
+import { RxCross1 } from "react-icons/rx";
 import {
   decreaseItem,
   increaseItem,
@@ -44,14 +45,14 @@ const CartItem = ({ item }) => {
   const itemPrice = (item.price * item.quantity).toFixed(2);
 
   return (
-    <div className="flex flex-col md:flex-row  items-stretch justify-between gap-5 rounded w-full overflow-hidden p-3 border-b border-background border-opacity-70">
+    <div className="flex flex-col md:flex-row  items-stretch justify-between gap-5 rounded-sm w-full overflow-hidden p-3 border-b border-background border-opacity-70">
       <div className="flex items-center w-full gap-5">
         <div className=" w-24 md:w-36">
           <img src={item.image} alt="" className="w-full" />
         </div>
         <div className="flex flex-col gap-5 w-full ">
-          <h2 className="text-xl font-bold"> {item.title} </h2>
-          <div className=" flex items-center justify-between ">
+          <h2 className="text-lg font-medium"> {item.title} </h2>
+          <div className=" flex items-center justify-between gap-2 ">
             <p className="text-lg font-semibold w-20 "> $ {itemPrice} </p>
             <div className=" flex flex-row gap-2 md:flex-col items-center justify-center">
               <button
@@ -61,7 +62,7 @@ const CartItem = ({ item }) => {
                 {" "}
                 <HiOutlineMinus />{" "}
               </button>
-              <p className="w-10 h-10 border rounded-sm border-background flex items-center justify-center">
+              <p className=" text-lg w-10 h-10 border rounded-sm border-background flex items-center justify-center">
                 {" "}
                 {item.quantity}{" "}
               </p>
@@ -74,42 +75,14 @@ const CartItem = ({ item }) => {
             </div>
             <button
               onClick={removeItem}
-              className=" w-10 h-10 border border-red-600 text-red-600 rounded-sm flex items-center justify-center hover:bg-red-600 hover:text-primary duration-200"
+              className=" w-10 h-10 border border-red-600 text-red-600 rounded-sm flex items-center justify-center hover:bg-red-600 hover:text-primary duration-200 text-lg"
             >
               {" "}
-              <FaTrash />{" "}
+              <RxCross1 />{" "}
             </button>
           </div>
         </div>
       </div>
-      {/* <div className="flex justify-between items-center border-t md:border-t-0 pt-3">
-        <div className=" flex flex-row gap-2  md:flex-col  items-center justify-center">
-          <button
-            className="w-10 h-10  bg-background rounded-sm text-primary flex items-center justify-center"
-            onClick={decreaseQuantity}
-          >
-            {" "}
-            <HiOutlineMinus />{" "}
-          </button>
-          <p className="w-10 h-10 border rounded-sm border-background flex items-center justify-center">
-            {" "}
-            {item.quantity}{" "}
-          </p>
-          <button
-            className="w-10 h-10  bg-background rounded-sm text-primary flex items-center justify-center"
-            onClick={increaseQuantity}
-          >
-            <BsPlusLg />
-          </button>
-        </div>
-        <button
-          onClick={removeItem}
-          className=" w-10 h-10 border border-red-600 text-red-600 rounded-sm flex items-center justify-center hover:bg-red-600 hover:text-primary duration-200"
-        >
-          {" "}
-          <FaTrash />{" "}
-        </button>
-      </div> */}
     </div>
   );
 };

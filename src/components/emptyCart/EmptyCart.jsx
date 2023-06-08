@@ -13,7 +13,7 @@ const EmptyCart = () => {
         <h2 className="text-2xl font-bold text-center">
           Your Shopping Cart Empty Now!
         </h2>
-        <PButton path={"products"} title={"Go Shopping"} />
+        <PButton path={"/products"} title={"Go Shopping"} />
       </div>
     </section>
   );

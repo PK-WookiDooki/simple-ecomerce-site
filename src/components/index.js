@@ -8,3 +8,5 @@ export { default as TRow } from "./cartItem/TableRow";
 export { default as Footer } from "./footer/Footer";
 export { default as ECart } from "./emptyCart/EmptyCart";
 export { default as PButton } from "./buttons/PrimaryButton";
+export { default as Payments } from "./payments/Payments";
+export { default as PMInput } from "./input/PMInput";

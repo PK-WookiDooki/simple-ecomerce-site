@@ -17,7 +17,7 @@ const Home = () => {
           explore a vast array of products and services from the comfort of your
           own home. So, make your shopping online easy and freely.
         </p>
-        <PButton path={"products"} title={"Shop Now"} />
+        <PButton path={"/products"} title={"Shop Now"} />
       </div>
       <div className="w-full">
         <img src={shopping} alt="" className="" />

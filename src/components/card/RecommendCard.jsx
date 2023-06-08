@@ -10,7 +10,7 @@ const RecommendCard = ({ item }) => {
         className=" md:w-[250px] flex flex-row items-center gap-5 md:flex-col md:gap-3 p-5 bg-primary rounded-sm text-background group hover:shadow-md
         border duration-150 "
       >
-        <div className=" h-36 md:h-52 w-full overflow-hidden bg-primary p-3 ">
+        <div className=" h-36 md:h-52 w-[60%] md:w-full overflow-hidden bg-primary p-3 ">
           <img
             src={item?.image}
             alt=""
@@ -18,15 +18,13 @@ const RecommendCard = ({ item }) => {
           />
         </div>
         <div className=" w-full">
-          <h2 className="font-medium md:truncate ">{item?.title}</h2>
+          <h2 className="font-semibold md:truncate ">{item?.title}</h2>
           <div className="flex justify-between items-center mt-3">
-            <p className="font-medium"> $ {item?.price} </p>
+            <p className="text-lg font-semibold"> $ {item?.price} </p>
             <p
               className="flex items-center gap-1
               "
             >
-              {" "}
-              <AiFillStar className="text-lg" />{" "}
               {generateStars(Math.floor(item?.rating?.rate))}{" "}
             </p>
           </div>

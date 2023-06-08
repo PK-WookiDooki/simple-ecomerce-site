@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { RiMenu3Fill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
-import { BsCartCheckFill } from "react-icons/bs";
 import "./nav.css";
 import Navlink from "../navlink/Navlink";
 import { useDispatch, useSelector } from "react-redux";

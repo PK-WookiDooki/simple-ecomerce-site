@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { CItem, ECart, TRow } from "../../components";
+import { CItem, ECart, PButton, TRow } from "../../components";
 import { BsArrowLeft } from "react-icons/bs";
 import { clearCart } from "../../features/services/productsSlice";
 import Swal from "sweetalert2";
+import { showAlert } from "../../features/functions/alert";
 
 const Cart = () => {
   const { cartItems, cartQuantity, totalAmount } = useSelector(
     (state) => state.products
   );
+
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+
+  const handleDiscount = () => {
+    if (!promoCode) {
+      return showAlert("Error", "Please enter proper promo code!", "error");
+    } else if (promoCode.trim().length != 6) {
+      return showAlert("Error", "Your promo code is invalid!", "error");
+    }
+    const totalDiscount = totalAmount * (15 / 100);
+    setDiscount(totalDiscount.toFixed(2));
+    setPromoCode(promoCode);
+  };
+
+  useEffect(() => {
+    if (promoCode) {
+      handleDiscount();
+    }
+  }, [totalAmount]);
 
   const dispatch = useDispatch();
 
@@ -44,9 +65,9 @@ const Cart = () => {
         <thead>
           <tr className="text-left table-row ">
             <th className="py-3"> Description </th>
+            <th className="py-3"> Price </th>
             <th className="py-3"> Quantity </th>
             <th className="py-3"> Remove </th>
-            <th className="py-3"> Price </th>
           </tr>
         </thead>
         <tbody>
@@ -61,16 +82,37 @@ const Cart = () => {
           return <CItem key={item.id} item={item} />;
         })}
       </div>
-      <div className=" flex flex-col md:flex-row justify-between p-3 shadow border-t sticky bottom-0 z-[5] mt-auto bg-gray-100 gap-3">
-        <div className="">
-          <h2 className="text-lg font-bold text-center">
-            Total Amount : $ {totalAmount.toFixed(2)}
-          </h2>
+      <div className=" flex flex-col lg:flex-row items-start justify-between p-3 shadow border-t sticky bottom-0 z-[5] mt-auto bg-gray-100 gap-3 md:gap-8">
+        <div className=" flex flex-col items-stretch gap-3 w-full lg:max-w-2xl ">
+          <div className=" flex items-center h-10 w-full  border border-background rounded-sm">
+            <input
+              type="text"
+              value={promoCode}
+              onChange={(e) => setPromoCode(e.target.value)}
+              placeholder="Please enter promo code to get 15% off"
+              className=" h-full w-full bg-transparent pl-2 outline-none text-background tracking-wide focus:bg-primary duration-150 placeholder:text-sm "
+            />
+            <PButton title={"Redeem"} toggle={handleDiscount} />
+          </div>
+          <div className="flex flex-col gap-3 md:flex-row md:items-start">
+            <div className=" flex items-center min-w-[180px] justify-between px-2 py-1 border border-background rounded-sm">
+              <h2 className="text-lg font-medium">Discount </h2>
+              <span className=" text-2xl font-semibold"> $ {discount} </span>
+            </div>
+            <div className=" flex items-center min-w-[180px] justify-between px-2 py-1 border border-background rounded-sm">
+              <h2 className="text-lg font-medium">Total </h2>
+              <span className=" text-2xl font-semibold">
+                {" "}
+                $ {totalAmount.toFixed(2)}{" "}
+              </span>
+            </div>
+            <PButton path={"checkout"} title={"Checkout Now"} width={"full"} />
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col md:flex-row-reverse lg:flex-col gap-3 w-full lg:max-w-[280px]">
           <button
             onClick={clear}
-            className="px-5 py-2 bg-red-500 hover:bg-red-600 rounded-sm text-primary duration-200"
+            className=" w-full px-5 py-2 bg-red-500 hover:bg-red-600 rounded-sm text-primary duration-200"
           >
             {" "}
             Clear Cart{" "}

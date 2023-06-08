@@ -54,12 +54,15 @@ const TableRow = ({ item }) => {
             <p className="text-gray-400 text-sm mb-2 capitalize">
               {" "}
               {item.category}{" "}
-            </p>
-            <h2 className="md:text-lg font-bold"> {item.title} </h2>
+            </p> 
+            <h2 className="md:text-lg font-bold pr-5"> {item.title} </h2>
           </div>
         </div>
       </td>
-      <td className="py-3">
+      <td className="py-3 min-w-[130px]">
+        <p className=" font-semibold text-lg"> $ {itemPrice} </p>
+      </td>
+      <td className="py-3 min-w-[200px]">
         <div className=" flex flex-row gap-2 items-center">
           <button
             className="w-10 h-10  bg-background rounded-sm text-primary flex items-center justify-center"
@@ -68,7 +71,7 @@ const TableRow = ({ item }) => {
             {" "}
             <HiOutlineMinus />{" "}
           </button>
-          <p className="w-10 h-10 border rounded-sm border-background flex items-center justify-center">
+          <p className="text-xl w-10 h-10 border rounded-sm border-background flex items-center justify-center">
             {" "}
             {item.quantity}{" "}
           </p>
@@ -90,9 +93,6 @@ const TableRow = ({ item }) => {
             <FaTrash />{" "}
           </button>
         </div>
-      </td>
-      <td className="py-3">
-        <p className=" font-semibold text-lg"> $ {itemPrice} </p>
       </td>
     </tr>
   );

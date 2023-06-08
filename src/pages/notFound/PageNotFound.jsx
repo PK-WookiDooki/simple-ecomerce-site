@@ -1,6 +1,7 @@
 import React from "react";
 import pnf from "../../assets/images/page_not_found.png";
 import { Link } from "react-router-dom";
+import { PButton } from "../../components";
 
 const PageNotFound = () => {
   return (
@@ -19,13 +20,7 @@ const PageNotFound = () => {
           the case!{" "}
         </p>
 
-        <Link
-          to={"/"}
-          className="px-5 py-2 rounded-sm bg-background hover:bg-green-900 duration-150 text-primary"
-        >
-          {" "}
-          Go Home{" "}
-        </Link>
+        <PButton path={"/"} title={"Go Home"} />
       </div>
     </div>
   );

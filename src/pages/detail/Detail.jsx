@@ -82,11 +82,11 @@ const Detail = () => {
           </div>
         </div>
       </div>
-      <div className=" mt-5 bg-gray-200 rounded-sm py-3">
+      <div className=" mt-5 bg-gray-200 rounded-sm p-5">
         <h2 className=" capitalize text-lg font-semibold text-center">
           You may also like
         </h2>
-        <div className=" flex flex-col md:flex-row flex-wrap gap-5 items-stretch justify-center mt-3 ">
+        <div className=" flex flex-col md:flex-row flex-wrap gap-5 items-stretch justify-center mt-3">
           {sameCategory?.map((item) => {
             return <RCard key={item.id} item={item} />;
           })}
