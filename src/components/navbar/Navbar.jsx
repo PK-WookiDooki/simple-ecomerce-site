@@ -42,11 +42,11 @@ const Navbar = () => {
           <Navlink path={"contact"} name={"Contact"} />
         </ul>
         <div className="hidden md:flex flex-row gap-3 items-center">
-          <Input
+          {/* <Input
             handleSubmit={handleSubmit}
             search={search}
             setSearch={setSearch}
-          />
+          /> */}
           <CartLink />
         </div>
 

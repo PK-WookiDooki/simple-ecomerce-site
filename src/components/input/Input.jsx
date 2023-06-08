@@ -1,11 +1,17 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
+import { RxCross1 } from "react-icons/rx";
 
 const Input = ({ search, setSearch, handleSubmit }) => {
+  const clearSearch = (e) => {
+    e.preventDefault();
+    setSearch("");
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
-      className=" border border-background h-10 w-full md:w-40 lg:w-56 rounded-sm px-3 flex flex-rwo items-center gap-2"
+      className=" border border-background h-10 w-full md:max-w-xs rounded-sm px-2 flex flex-rwo items-center gap-2 "
     >
       <BsSearch />
       <input
@@ -15,6 +21,14 @@ const Input = ({ search, setSearch, handleSubmit }) => {
         className=" outline-none w-full h-full  placeholder:text-gray-500 bg-transparent"
         placeholder="Search Here . . . "
       />
+      {search ? (
+        <button onClick={clearSearch} className="text-xl px-1">
+          {" "}
+          <RxCross1 />{" "}
+        </button>
+      ) : (
+        ""
+      )}
     </form>
   );
 };

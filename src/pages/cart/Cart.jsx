@@ -6,6 +6,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { clearCart } from "../../features/services/productsSlice";
 import Swal from "sweetalert2";
 import { showAlert } from "../../features/functions/alert";
+import cookie from "cookiejs";
 
 const Cart = () => {
   const { cartItems, cartQuantity, totalAmount } = useSelector(
@@ -16,6 +17,7 @@ const Cart = () => {
   const [discount, setDiscount] = useState(0);
 
   const handleDiscount = () => {
+    // e.preventDefault();
     if (!promoCode) {
       return showAlert("Error", "Please enter proper promo code!", "error");
     } else if (promoCode.trim().length != 6) {
@@ -72,7 +74,7 @@ const Cart = () => {
         </thead>
         <tbody>
           {cartItems?.map((item) => {
-            return <TRow item={item} />;
+            return <TRow key={item.id} item={item} />;
           })}
         </tbody>
       </table>
@@ -106,20 +108,25 @@ const Cart = () => {
                 $ {totalAmount.toFixed(2)}{" "}
               </span>
             </div>
-            <PButton path={"checkout"} title={"Checkout Now"} width={"full"} />
+            <PButton
+              path={"checkout"}
+              title={"Checkout Now"}
+              width={"full"}
+              ml={"ml"}
+            />
           </div>
         </div>
         <div className="flex flex-col md:flex-row-reverse lg:flex-col gap-3 w-full lg:max-w-[280px]">
           <button
             onClick={clear}
-            className=" w-full px-5 py-2 bg-red-500 hover:bg-red-600 rounded-sm text-primary duration-200"
+            className=" w-full px-5 py-2 bg-red-600 hover:bg-red-500 rounded-sm text-primary duration-200"
           >
             {" "}
             Clear Cart{" "}
           </button>
           <Link
             to={"/products"}
-            className=" flex items-center gap-2 px-5 py-2 justify-center w-full rounded-sm bg-gray-700 hover:bg-gray-900 text-primary duration-150"
+            className=" flex items-center gap-2 px-5 py-2 justify-center w-full rounded-sm bg-gray-900 hover:bg-gray-700 text-primary duration-150"
           >
             {" "}
             <BsArrowLeft className="text-xl" /> Continue Shopping

@@ -6,9 +6,9 @@ export const generateStars = (amount) => {
       {" "}
       {[...new Array(5)].map((arr, index) => {
         return index < amount ? (
-          <AiFillStar className="text-lg" />
+          <AiFillStar key={index} className="text-lg" />
         ) : (
-          <AiOutlineStar className="text-lg" />
+          <AiOutlineStar key={index} className="text-lg" />
         );
       })}{" "}
     </p>

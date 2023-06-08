@@ -1,5 +1,6 @@
 import React from "react";
-import { FaTrash } from "react-icons/fa";
+import { RxCross1 } from "react-icons/rx";
+
 import { BsPlusLg } from "react-icons/bs";
 import { HiOutlineMinus } from "react-icons/hi";
 import { useDispatch } from "react-redux";
@@ -54,7 +55,7 @@ const TableRow = ({ item }) => {
             <p className="text-gray-400 text-sm mb-2 capitalize">
               {" "}
               {item.category}{" "}
-            </p> 
+            </p>
             <h2 className="md:text-lg font-bold pr-5"> {item.title} </h2>
           </div>
         </div>
@@ -87,10 +88,10 @@ const TableRow = ({ item }) => {
         <div className=" ">
           <button
             onClick={removeItem}
-            className=" w-10 h-10 border border-red-600 text-red-600 rounded-sm flex items-center justify-center hover:bg-red-600 hover:text-primary duration-200  "
+            className="text-lg w-10 h-10 border border-red-600 text-red-600 rounded-sm flex items-center justify-center hover:bg-red-600 hover:text-primary duration-200  "
           >
             {" "}
-            <FaTrash />{" "}
+            <RxCross1 />{" "}
           </button>
         </div>
       </td>

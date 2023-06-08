@@ -2,47 +2,50 @@ import React, { useEffect, useState } from "react";
 import { PButton, PMInput, Payments } from "../../components";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../../features/services/productsSlice";
+import { showAlert } from "../../features/functions/alert";
 
 const CheckOut = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [isTrue, setIsTrue] = useState(false);
-  const [errors, setErrors] = useState({
-    nameErr: "",
-    addressErr: "",
-    cityErr: "",
-  });
+  const [nameErr, setNameErr] = useState("");
+  const [addressErr, setAddressErr] = useState("");
+  const [cityErr, setCityErr] = useState("");
 
   const { cartItems } = useSelector((state) => state.products);
 
   const nav = useNavigate();
-
-  useEffect(() => {
-    if (
-      name &&
-      address &&
-      city &&
-      name.trim().length < 4 &&
-      address.trim().length < 4 &&
-      city.trim().length < 4
-    ) {
-      handleSubmit();
-    }
-  }, [name, address, city]);
+  const dispatch = useDispatch();
+  const handleName = (e) => {
+    setName(e.target.value);
+    setNameErr("");
+  };
+  const handleAddress = (e) => {
+    setAddress(e.target.value);
+    setAddressErr("");
+  };
+  const handleCity = (e) => {
+    setCity(e.target.value);
+    setCityErr("");
+  };
 
   const handleSubmit = () => {
-    if (name.trim().length < 4) {
-      setErrors({ nameErr: "Name is invalid!" });
-    } else if (address.trim().length < 4) {
-      setErrors({ addressErr: "Please fill proper address!" });
-    } else if (city.trim().length < 4) {
-      setErrors({ cityErr: "Please fill valid city!" });
-    } else {
-      setErrors({ nameErr: "", addressErr: "", cityErr: "" });
-      setIsTrue(true);
+    if (name.trim().length === 0) {
+      setNameErr("Name is required!");
+      return;
     }
+    if (address.trim().length === 0) {
+      setAddressErr("Address is required!");
+      return;
+    }
+    if (city.trim().length === 0) {
+      setCityErr("Please provide valid city!");
+      return;
+    }
+    dispatch(clearCart());
+    showAlert("Thank You!", "Your order is confirmed.", "success");
   };
 
   if (cartItems.length == 0) {
@@ -53,12 +56,12 @@ const CheckOut = () => {
       <Payments />
       <div className=" mt-10">
         <div className=" border-t border-background relative">
-          <h2 className="uppercase absolute bg-primary transform top-0 left-1/2 -translate-x-1/2 -translate-y-3 w-fit px-3 min-w-max">
+          <h2 className="uppercase absolute bg-primary transform top-0 left-1/2 -translate-x-1/2 -translate-y-3 w-fit px-1 min-w-max text-sm">
             Or continue to pay with a credit card
           </h2>
         </div>
         <div className=" mt-8">
-          <div className=" flex justify-between ">
+          <div className=" flex flex-col gap-1 md:flex-row justify-between ">
             <h2 className="text-xl font-semibold"> Contact Information</h2>
             <div className="flex items-center gap-1 text-sm">
               <p> Already have an account? </p>
@@ -84,23 +87,23 @@ const CheckOut = () => {
           <h2 className="text-xl font-semibold">Shipping Address</h2>
           <div className="flex flex-col mt-3">
             <PMInput
-              error={errors?.nameErr}
+              error={nameErr}
               placeholder={"name"}
               value={name}
-              setValue={setName}
+              handleChange={handleName}
             />
             <PMInput placeholder={"Company (required for business address)"} />
             <PMInput
-              error={errors?.addressErr}
+              error={addressErr}
               placeholder={"address"}
               value={address}
-              setValue={setAddress}
+              handleChange={handleAddress}
             />
             <PMInput
-              error={errors?.cityErr}
+              error={cityErr}
               placeholder={"city"}
               value={city}
-              setValue={setCity}
+              handleChange={handleCity}
             />
             <PMInput
               placeholder={"Phone (optional)"}
@@ -110,12 +113,18 @@ const CheckOut = () => {
               }
             />
           </div>
-          <div className="flex mt-3 ">
+          <div className="flex mt-3 gap-2 flex-col-reverse md:flex-row ">
             <PButton
-              title={"continue to shipping"}
+              title={"Back to Cart"}
+              width={"full"}
+              path={"/cart"}
+              bg={"gray"}
+            />
+            <PButton
+              title={"Confirm Order"}
               width={"full"}
               toggle={handleSubmit}
-              path={isTrue ? "/" : ""}
+              ml={"ml"}
             />
           </div>
         </div>

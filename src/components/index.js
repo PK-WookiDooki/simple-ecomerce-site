@@ -10,3 +10,4 @@ export { default as ECart } from "./emptyCart/EmptyCart";
 export { default as PButton } from "./buttons/PrimaryButton";
 export { default as Payments } from "./payments/Payments";
 export { default as PMInput } from "./input/PMInput";
+export { default as SInput } from "./input/Input";

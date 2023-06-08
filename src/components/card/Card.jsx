@@ -32,9 +32,9 @@ const Card = ({ item }) => {
         </h2>
         <div className="flex justify-between items-center mt-auto">
           <p className="font-semibold"> $ {item?.price} </p>
-          <p className="text-background">
+          <div className="text-background">
             {generateStars(Math.floor(item?.rating?.rate))}
-          </p>
+          </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import PMLink from "./PMLink";
 const Payments = () => {
   return (
     <section className="border border-background relative p-3 rounded-sm tracking-wide">
-      <h2 className="text-lg font-semibold absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 bg-primary px-3 ">
+      <h2 className="text-lg font-semibold absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 bg-primary px-1  min-w-max">
         Express Checkout
       </h2>
       <div className="flex items-center justify-center gap-2 ">
