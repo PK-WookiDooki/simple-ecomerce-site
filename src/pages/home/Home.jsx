@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="w-[90%] py-5 flex flex-col gap-5 md:flex-row md:items-center md:gap-10 tracking-wide ">
       <div className="flex flex-col gap-5 w-full md:w-[80%] items-center text-center md:text-left md:items-start p-3">
-        <h2 className="text-4xl font-bold w-[85%] lg:w-[60%] ">
+        <h2 className="text-4xl font-bold w-full lg:w-[60%] ">
           {" "}
           Make Your Shopping Online{" "}
         </h2>

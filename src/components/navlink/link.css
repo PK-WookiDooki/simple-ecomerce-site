@@ -1,3 +1,25 @@
-.nav-link:active {
-  background: #000;
+.nav-link.active {
+  border-color: #004643;
+}
+
+@media screen and (max-width: 870px) {
+  .nav-link:hover {
+    color: white;
+  }
+  .nav-link.active {
+    color: white;
+    background: rgb(0, 0, 0, 0.3);
+  }
+}
+
+@media screen and (min-width: 865px) {
+  .nav-link {
+    color: rgb(141, 141, 141);
+  }
+  .nav-link.active {
+    color: #004643;
+  }
+  .nav-link:hover {
+    color: #004643;
+  }
 }

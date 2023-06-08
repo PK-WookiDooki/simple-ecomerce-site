@@ -1,7 +1,16 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ML } from "./layouts";
-import { Detail, Products, Cart, Home, PNF, About, CheckOut } from "./pages";
+import {
+  Detail,
+  Products,
+  Cart,
+  Home,
+  PNF,
+  About,
+  CheckOut,
+  Contact,
+} from "./pages";
 
 const App = () => {
   return (
@@ -17,6 +26,7 @@ const App = () => {
           <Route path="checkout" element={<CheckOut />} />
         </Route>
         <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
         <Route path="*" element={<PNF />}></Route>
       </Route>
     </Routes>

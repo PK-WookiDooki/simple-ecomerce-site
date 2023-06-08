@@ -26,7 +26,7 @@ export const successAlert = () => {
     toast: true,
     position: "top",
     showConfirmButton: false,
-    timer: 1500,
+    timer: 1000,
     timerProgressBar: true,
     // didOpen: (toast) => {
     //   toast.addEventListener("mouseenter", Swal.stopTimer);

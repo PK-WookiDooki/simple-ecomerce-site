@@ -10,12 +10,12 @@ const PMInput = ({ type, placeholder, icon, error, value, handleChange }) => {
       >
         <input
           value={value ? value : ""}
-          onChange={handleChange}
+          onChange={handleChange ? handleChange : null}
           type={type ? type : "text"}
           placeholder={placeholder}
-          className={`h-full w-full outline-none px-2 placeholder:capitalize placeholder:text-gray-500 ${
+          className={`h-full w-full outline-none px-2 placeholder:capitalize placeholder:text-gray-500  ${
             error ? "text-red-500 placeholder:text-red-500" : ""
-          } `}
+          } duration-150 `}
         />
         {icon ? icon : ""}
       </div>

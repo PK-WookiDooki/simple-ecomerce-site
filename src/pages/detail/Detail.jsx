@@ -50,15 +50,15 @@ const Detail = () => {
 
   return (
     <section className="my-5 tracking-wide w-[90%] select-none">
-      <div className="border  p-5 flex flex-col lg:flex-row gap-5 lg:gap-10">
-        <div className=" w-full md:w-[600px] h-auto lg:h-96 ">
+      <div className="border p-5 flex flex-col md:flex-row gap-5 lg:gap-10">
+        <div className=" w-full md:w-[400px] lg:w-[600px] h-auto lg:h-96 ">
           <img
             src={currentProduct?.image}
             alt=""
             className=" h-full w-full object-contain mx-auto p-5 shadow"
           />
         </div>
-        <div className="text-background flex flex-col gap-3 w-full pr-5">
+        <div className="text-background flex flex-col gap-3 w-full md:pr-5">
           <p className=" w-fit text-sm text-gray-400 capitalize">
             {" "}
             {currentProduct?.category}{" "}

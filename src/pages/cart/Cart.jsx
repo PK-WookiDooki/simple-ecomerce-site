@@ -84,14 +84,14 @@ const Cart = () => {
           return <CItem key={item.id} item={item} />;
         })}
       </div>
-      <div className=" flex flex-col lg:flex-row items-start justify-between p-3 shadow border-t sticky bottom-0 z-[5] mt-auto bg-gray-100 gap-3 md:gap-8">
+      <div className="md:sticky bottom-0 flex flex-col lg:flex-row items-start justify-between p-3 shadow border-t  z-[5] mt-auto bg-gray-100 gap-3 md:gap-8">
         <div className=" flex flex-col items-stretch gap-3 w-full lg:max-w-2xl ">
           <div className=" flex items-center h-10 w-full  border border-background rounded-sm">
             <input
               type="text"
               value={promoCode}
               onChange={(e) => setPromoCode(e.target.value)}
-              placeholder="Please enter promo code to get 15% off"
+              placeholder="Enter promo code and get 15% off"
               className=" h-full w-full bg-transparent pl-2 outline-none text-background tracking-wide focus:bg-primary duration-150 placeholder:text-sm "
             />
             <PButton title={"Redeem"} toggle={handleDiscount} />
