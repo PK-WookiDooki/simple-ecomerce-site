@@ -6,3 +6,4 @@ export { default as About } from "./about/About";
 export { default as PNF } from "./notFound/PageNotFound";
 export { default as CheckOut } from "./checkout/CheckOut";
 export { default as Contact } from "./contact/Contact";
+export { default as Login } from "./account/Login";

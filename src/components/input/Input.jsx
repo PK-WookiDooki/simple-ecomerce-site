@@ -2,10 +2,11 @@ import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 
-const Input = ({ search, setSearch, handleSubmit }) => {
+const Input = ({ search, setSearch, handleSubmit, toggle }) => {
   const clearSearch = (e) => {
     e.preventDefault();
     setSearch("");
+    toggle();
   };
 
   return (

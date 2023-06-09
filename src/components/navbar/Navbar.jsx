@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "../input/Input";
 import CartLink from "../cartlink/CartLink";
 import { setKeyword } from "../../features/services/productsSlice";
+import cookie from "cookiejs";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -21,6 +22,8 @@ const Navbar = () => {
     e.preventDefault();
     setMenu(!menu);
   };
+
+  const token = cookie.get("token") ? cookie.get("token") : false;
 
   useEffect(() => {
     dispatch(setKeyword(search));
@@ -40,6 +43,7 @@ const Navbar = () => {
           <Navlink path={"products"} name={"Products"} />
           <Navlink path={"about"} name={"About"} />
           <Navlink path={"contact"} name={"Contact"} />
+          {token ? "" : <Navlink path={"login"} name={"Login"} />}
         </ul>
         <div className="hidden md:flex flex-row gap-3 items-center">
           {/* <Input
@@ -54,21 +58,27 @@ const Navbar = () => {
           {menu ? <RxCross1 /> : <RiMenu3Fill />}
         </button>
         <div
-          className={`flex flex-col transform ${
-            menu ? " h-[276px] p-3 shadow border" : "h-0 "
-          } md:hidden fixed text-background bg-gray-100  top-24 rounded gap-4 w-[90%] duration-200 overflow-hidden z-10`}
+          className={`flex flex-col transform p-3 ${
+            menu ? " shadow border translate-x-0" : " translate-x-[1000px] "
+          }  md:hidden fixed text-background bg-gray-100  top-24 rounded gap-4 w-[90%] duration-200 overflow-hidden z-10`}
         >
           <ul className="md:hidden flex flex-col items-center justify-center gap-3 w-full ">
             <Navlink path={"/"} name={"Home"} toggle={handleMenu} />
             <Navlink path={"products"} name={"Products"} toggle={handleMenu} />
             <Navlink path={"about"} name={"About"} toggle={handleMenu} />
             <Navlink path={"contact"} name={"Contact"} toggle={handleMenu} />
+            {token ? (
+              ""
+            ) : (
+              <Navlink path={"login"} name={"Login"} toggle={handleMenu} />
+            )}
           </ul>
           <div className={"md:hidden flex flex-row gap-5 items-center"}>
             <Input
               handleSubmit={handleSubmit}
               search={search}
               setSearch={setSearch}
+              toggle={handleMenu}
             />
             <CartLink toggle={handleMenu} />
           </div>

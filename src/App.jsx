@@ -10,7 +10,9 @@ import {
   About,
   CheckOut,
   Contact,
+  Login,
 } from "./pages";
+import { CGuard } from "./components";
 
 const App = () => {
   return (
@@ -23,10 +25,18 @@ const App = () => {
         </Route>
         <Route path="cart">
           <Route index element={<Cart />} />
-          <Route path="checkout" element={<CheckOut />} />
+          <Route
+            path="checkout"
+            element={
+              <CGuard>
+                <CheckOut />
+              </CGuard>
+            }
+          />
         </Route>
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="login" element={<Login />} />
         <Route path="*" element={<PNF />}></Route>
       </Route>
     </Routes>

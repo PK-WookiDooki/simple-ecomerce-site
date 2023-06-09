@@ -11,3 +11,4 @@ export { default as PButton } from "./buttons/PrimaryButton";
 export { default as Payments } from "./payments/Payments";
 export { default as PMInput } from "./input/PMInput";
 export { default as SInput } from "./input/Input";
+export { default as CGuard } from "./routeGuards/CGuard";

@@ -13,6 +13,11 @@ const CheckOut = () => {
   const [nameErr, setNameErr] = useState("");
   const [addressErr, setAddressErr] = useState("");
   const [cityErr, setCityErr] = useState("");
+  const [phoneErr, setPhoneErr] = useState("");
+  const [phone, setPhone] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState("");
 
   const { cartItems } = useSelector((state) => state.products);
 
@@ -22,6 +27,11 @@ const CheckOut = () => {
     setName(e.target.value);
     setNameErr("");
   };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailErr("");
+  };
   const handleAddress = (e) => {
     setAddress(e.target.value);
     setAddressErr("");
@@ -29,6 +39,14 @@ const CheckOut = () => {
   const handleCity = (e) => {
     setCity(e.target.value);
     setCityErr("");
+  };
+
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
+    setPhoneErr("");
+  };
+  const handleCompany = (e) => {
+    setCompany(e.target.value);
   };
 
   const handleSubmit = () => {
@@ -42,6 +60,10 @@ const CheckOut = () => {
     }
     if (city.trim().length === 0) {
       setCityErr("Please provide valid city!");
+      return;
+    }
+    if (isNaN(phone)) {
+      setPhoneErr("Please enter valid phone no!");
       return;
     }
     dispatch(clearCart());
@@ -69,7 +91,13 @@ const CheckOut = () => {
             </div>
           </div>
           <div className="mt-3">
-            <PMInput type={"email"} placeholder={"Enter your email"} />
+            <PMInput
+              type={"email"}
+              value={email}
+              error={emailErr}
+              handleChange={handleEmail}
+              placeholder={"Enter your email"}
+            />
             <div className=" flex items-center gap-2 -mt-2">
               <input
                 type="checkbox"
@@ -92,7 +120,11 @@ const CheckOut = () => {
               value={name}
               handleChange={handleName}
             />
-            <PMInput placeholder={"Company (required for business address)"} />
+            <PMInput
+              placeholder={"Company (required for business address)"}
+              value={company}
+              handleChange={handleCompany}
+            />
             <PMInput
               error={addressErr}
               placeholder={"address"}
@@ -107,10 +139,12 @@ const CheckOut = () => {
             />
             <PMInput
               placeholder={"Phone (optional)"}
-              type={"number"}
               icon={
                 <BsFillQuestionCircleFill className="text-xl w-10 text-gray-600" />
               }
+              value={phone}
+              handleChange={handlePhone}
+              error={phoneErr}
             />
           </div>
           <div className="flex mt-3 gap-2 flex-col-reverse md:flex-row ">
